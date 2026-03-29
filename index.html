@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primrose Speciality Coffee | Parallax Brochure</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">PRIMROSE</div>
+        <button class="lang-toggle" onclick="toggleLanguage()">中文 / EN</button>
+    </header>
+
+    <main id="parallax-container">
+        <!-- 12 Sections with Parallax Backgrounds -->
+        <section id="section-1" class="parallax-section" style="background-image: url('page_1.png');"></section>
+        <div class="content-overlay" id="content-1"></div>
+        
+        <section id="section-2" class="parallax-section" style="background-image: url('page_2.png');"></section>
+        <div class="content-overlay" id="content-2"></div>
+
+        <section id="section-3" class="parallax-section" style="background-image: url('page_3.png');"></section>
+        <div class="content-overlay" id="content-3"></div>
+
+        <section id="section-4" class="parallax-section" style="background-image: url('page_4.png');"></section>
+        <div class="content-overlay" id="content-4"></div>
+
+        <section id="section-5" class="parallax-section" style="background-image: url('page_5.png');"></section>
+        <div class="content-overlay" id="content-5"></div>
+
+        <section id="section-6" class="parallax-section" style="background-image: url('page_6.png');"></section>
+        <div class="content-overlay" id="content-6"></div>
+
+        <section id="section-7" class="parallax-section" style="background-image: url('page_7.png');"></section>
+        <div class="content-overlay" id="content-7"></div>
+
+        <section id="section-8" class="parallax-section" style="background-image: url('page_8.png');"></section>
+        <div class="content-overlay" id="content-8"></div>
+
+        <section id="section-9" class="parallax-section" style="background-image: url('page_9.png');"></section>
+        <div class="content-overlay" id="content-9"></div>
+
+        <section id="section-10" class="parallax-section" style="background-image: url('page_10.png');"></section>
+        <div class="content-overlay" id="content-10"></div>
+
+        <section id="section-11" class="parallax-section" style="background-image: url('page_11.png');"></section>
+        <div class="content-overlay" id="content-11"></div>
+
+        <section id="section-12" class="parallax-section" style="background-image: url('page_12.png');"></section>
+        <div class="content-overlay" id="content-12"></div>
+    </main>
+
+    <div class="social-bar">
+        <a href="https://wa.me/251911513747" target="_blank" class="social-link" title="WhatsApp">WA</a>
+        <a href="https://instagram.com/Primrose.coffee" target="_blank" class="social-link" title="Instagram">IG</a>
+        <a href="javascript:void(0)" onclick="showWeChat()" class="social-link" title="WeChat">WX</a>
+    </div>
+
+    <div id="wechat-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:200; align-items:center; justify-content:center; flex-direction:column; padding: 2rem;">
+        <h2>WeChat ID</h2>
+        <p style="font-size: 1.5rem; font-weight: bold;">wxid_908d546yxmnh22</p>
+        <button onclick="closeWeChat()" style="margin-top: 2rem; background: var(--primary-color);">Close</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

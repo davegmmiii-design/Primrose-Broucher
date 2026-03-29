@@ -1,0 +1,202 @@
+{
+  "en": {
+    "page1": {
+      "title": "Primrose Speciality Coffee",
+      "slogan": "16 Years of Commitment to Quality!",
+      "since": "Since 2010"
+    },
+    "page2": {
+      "title": "Who We Are",
+      "text": "Primrose Specialty Coffee is a leading Ethiopian coffee exporting company, specializing in high-quality specialty and premium coffee. Founded in 2010 by Mr. Abreham Mengistie and Mrs. Meseret Workneh, who have over 25 years of experience in the coffee industry, the company exports more than 6,000 tons of coffee annually.",
+      "subtitle": "What We Do",
+      "subtext": "Primrose focuses on innovative coffee processing methods such as Carbonic Maceration, Anaerobic fermentation, and Supernatural coffees. We are pioneers in introducing these methods to Ethiopia since 2017."
+    },
+    "page4": {
+      "title": "Company Philosophy",
+      "text": "At Primrose, our company philosophy is to lead in specialty coffee exports by delivering exceptional quality while honoring Ethiopia’s rich coffee heritage. We strive to be a trusted, one-stop green coffee partner, focused on quality, consistency, timely delivery, and long-term relationships.",
+      "subtitle": "Sourcing & Sustainability",
+      "subtext": "We source coffee from our 12 washing stations in Ethiopia, working closely with 167 vertically integrated suppliers to ensure premium quality and full traceability. Guided by ethical and sustainable practices, our operations comply with internationally recognized standards including RFA, Organic, C.A.F.E. Practices, and EUDR. Through fair pricing, profit sharing, and continuous community investment, we build long-term partnerships from cherry to cup."
+    },
+    "page6": {
+      "title": "Quality Control",
+      "text": "Our coffee laboratory, led by a certified Q Graders and CVA cuppers, is equipped with advanced tools to ensure precise quality analysis and consistent results across every batch.",
+      "subtitle1": "Logistics",
+      "subtext1": "Our highly experienced logistics team proactively overcomes shipment challenges to ensure timely and smooth delivery of our coffee.",
+      "subtitle2": "Dry Mill",
+      "subtext2": "Our modern coffee cleaning plant in Addis Ababa operates 24/7 during peak season, processing 5 MT of coffee per hour with advanced equipment."
+    },
+    "page8": {
+      "title": "Our Brands & Processing Identity",
+      "text": "We proudly operate 15 distinct brands, officially registered with the Ethiopian Intellectual Property Office, each representing specific washing stations and carefully defined coffee processing protocols.",
+      "brands": [
+        "MUJE MESINA", "AMEDERARO", "HARUSUKE", "GARGARI GUTITY", "WORKA NENKE",
+        "BEYOU GERSAY", "Aricha Wubanchi", "KOKE SHALAYE", "GELCHA KINDU",
+        "URA BEAST", "HUBE", "MUDOLE", "MUSTICA", "NECTA", "SUPERNATURAL"
+      ]
+    },
+    "page9": {
+      "title": "Product List",
+      "subtitle": "Speciality Washed and Natural",
+      "products": [
+        "YIRGACHEFFEE AMEDERARO KONGA",
+        "YIRGACHEFFEE KOKE SHALAYE",
+        "YIRGACHEFFEE ARICHA WUBANCHI",
+        "YIRGACHEFFEE GERSAY BEYOU",
+        "YIRGACHEFFEE WORKA NENKE",
+        "YIRGACHEFFEE GARGARI GUTITY",
+        "YIRGACHEFFEE HARUSUKE",
+        "MUJE MESINA",
+        "YIRGACHEFFEE GALCHA KINDU",
+        "GUJI URABEAST",
+        "GUJI MUDOLE",
+        "SIDAMO HUBE"
+      ]
+    },
+    "page10": {
+      "title": "Our Signature Processing Methods",
+      "methods": [
+        {
+          "name": "SUPERNATURAL (Layer fermentation)",
+          "items": ["AMEDERARO KONGA", "KOKE SHALAYE", "ARICHA WUBANCHI", "GERSAY BEYOU", "GALCHA KINDU", "URABEAST"]
+        },
+        {
+          "name": "MUSTICA (Must fermentation)",
+          "items": ["GALCHA KINDU", "AMDERARO", "URABEAST"]
+        },
+        {
+          "name": "NECTA (Honey process)",
+          "items": ["AMEDERARO KONGA", "KOKE SHALAYE", "URABEAST"]
+        },
+        {
+          "name": "Anaerobic (Anaerobic fermentation)",
+          "items": ["KOKE SHALAYE", "GALCHA KINDU", "GARGARI GUTITY", "AMEDERARO KONGA", "URABEAST"]
+        }
+      ]
+    },
+    "page11": {
+      "title": "Setting a New Standard in Coffee Fermentation",
+      "text": "We are pioneers in modern, technology-driven coffee fermentation across Ethiopia and East Africa. We have recently introduced winery and brewery level processing at origin by installing food grade stainless steel fermentation tanks with a 3,000-liter capacity. This innovation delivers cleaner handling and tighter control over fermentation, improving consistency and quality while setting a new continental standard for specialty coffee processing."
+    },
+    "page12": {
+      "title": "Contact Us",
+      "contacts": [
+        {
+          "name": "Andualem Workneh",
+          "title": "General Manager",
+          "tel": "+2519 11424357",
+          "email": "deputymanager@primrosecoffee.com"
+        },
+        {
+          "name": "Meseret Workneh",
+          "title": "Founder & Managing Director",
+          "subtitle": "Q Grader / Evolved CVA Cupper",
+          "tel": "+251911513747",
+          "email": "primroseplc@gmail.com"
+        }
+      ],
+      "address": "Lideta Subcity, Woreda 08, Lesotho Street, Addis Ababa, Ethiopia",
+      "website": "WWW.PRIMROSECOFFEE.COM",
+      "instagram": "PRIMROSE.COFFEE"
+    }
+  },
+  "zh": {
+    "page1": {
+      "title": "Primrose 精品咖啡",
+      "slogan": "16年品质承诺！",
+      "since": "自2010年起"
+    },
+    "page2": {
+      "title": "关于我们",
+      "text": "Primrose Specialty Coffee 是一家领先的埃塞俄比亚咖啡出口公司，专注于高品质精品和特级咖啡。由 Abreham Mengistie 先生和 Meseret Workneh 女士于2010年创立，他们在咖啡行业拥有超过25年的经验。公司每年出口超过6,000吨咖啡。",
+      "subtitle": "我们的业务",
+      "subtext": "Primrose 专注于创新的咖啡处理方法，如二氧化碳浸渍法、厌氧发酵和 Supernatural 等级。自2017年以来，我们一直是向埃塞俄比亚引入这些方法的先驱。"
+    },
+    "page4": {
+      "title": "公司理念",
+      "text": "在 Primrose，我们的公司理念是通过提供卓越的品质，同时尊重埃塞俄比亚丰富的咖啡传统，在精品咖啡出口领域保持领先。我们努力成为值得信赖的一站式生豆合作伙伴，专注于品质、稳定性、及时交付和长期关系。",
+      "subtitle": "采购与可持续发展",
+      "subtext": "我们从埃塞俄比亚的12个水洗站采购咖啡，与167家垂直整合供应商密切合作，确保卓越的品质和全程可追溯性。遵循道德和可持续的实践，我们的运营符合国际认可的标准，包括 RFA、有机、C.A.F.E. Practices 和 EUDR。通过公平定价、利润共享和持续的社区投资，我们建立了从樱桃到杯子的长期合作伙伴关系。"
+    },
+    "page6": {
+      "title": "质量控制",
+      "text": "我们的咖啡实验室由认证的 Q Graders 和 CVA 杯测师领导，配备了先进的工具，确保对每一批次进行精确的质量分析并获得一致的结果。",
+      "subtitle1": "物流",
+      "subtext1": "我们经验丰富的物流团队主动克服运输挑战，确保咖啡及时、顺利地送达。",
+      "subtitle2": "干法厂",
+      "subtext2": "我们位于亚的斯亚贝巴的现代化咖啡清洁厂在旺季期间全天候运行，使用先进设备每小时处理 5 吨咖啡。"
+    },
+    "page8": {
+      "title": "我们的品牌与处理标识",
+      "text": "我们自豪地经营着15个不同的品牌，均已在埃塞俄比亚知识产权局正式注册，每个品牌都代表特定的水洗站和精心定义的咖啡处理协议。",
+      "brands": [
+        "MUJE MESINA", "AMEDERARO", "HARUSUKE", "GARGARI GUTITY", "WORKA NENKE",
+        "BEYOU GERSAY", "Aricha Wubanchi", "KOKE SHALAYE", "GELCHA KINDU",
+        "URA BEAST", "HUBE", "MUDOLE", "MUSTICA", "NECTA", "SUPERNATURAL"
+      ]
+    },
+    "page9": {
+      "title": "产品列表",
+      "subtitle": "精品水洗与日晒",
+      "products": [
+        "耶家雪菲 AMEDERARO KONGA",
+        "耶家雪菲 KOKE SHALAYE",
+        "耶家雪菲 ARICHA WUBANCHI",
+        "耶家雪菲 GERSAY BEYOU",
+        "耶家雪菲 WORKA NENKE",
+        "耶家雪菲 GARGARI GUTITY",
+        "耶家雪菲 HARUSUKE",
+        "MUJE MESINA",
+        "耶家雪菲 GALCHA KINDU",
+        "古吉 URABEAST",
+        "古吉 MUDOLE",
+        "西达摩 HUBE"
+      ]
+    },
+    "page10": {
+      "title": "我们的招牌处理方法",
+      "methods": [
+        {
+          "name": "SUPERNATURAL (层叠发酵)",
+          "items": ["AMEDERARO KONGA", "KOKE SHALAYE", "ARICHA WUBANCHI", "GERSAY BEYOU", "GALCHA KINDU", "URABEAST"]
+        },
+        {
+          "name": "MUSTICA (Must 发酵)",
+          "items": ["GALCHA KINDU", "AMDERARO", "URABEAST"]
+        },
+        {
+          "name": "NECTA (蜜处理)",
+          "items": ["AMEDERARO KONGA", "KOKE SHALAYE", "URABEAST"]
+        },
+        {
+          "name": "厌氧发酵 (Anaerobic)",
+          "items": ["KOKE SHALAYE", "GALCHA KINDU", "GARGARI GUTITY", "AMEDERARO KONGA", "URABEAST"]
+        }
+      ]
+    },
+    "page11": {
+      "title": "设定咖啡发酵的新标准",
+      "text": "我们是埃塞俄比亚和东非现代技术驱动的咖啡发酵领域的先驱。我们最近通过安装 3,000 升容量的食品级不锈钢发酵罐，在产地引入了酒庄和酿酒厂级别的处理工艺。这项创新带来了更清洁的处理方法和更严格的发酵控制，在为精品咖啡处理设定新的洲际标准的同时，提高了稳定性和品质。"
+    },
+    "page12": {
+      "title": "联系我们",
+      "contacts": [
+        {
+          "name": "Andualem Workneh",
+          "title": "总经理",
+          "tel": "+2519 11424357",
+          "email": "deputymanager@primrosecoffee.com"
+        },
+        {
+          "name": "Meseret Workneh",
+          "title": "创始人兼执行董事",
+          "subtitle": "Q Grader / 资深 CVA 杯测师",
+          "tel": "+251911513747",
+          "email": "primroseplc@gmail.com"
+        }
+      ],
+      "address": "埃塞俄比亚，亚的斯亚贝巴，Lesotho 街，Woreda 08，Lideta Subcity",
+      "website": "WWW.PRIMROSECOFFEE.COM",
+      "instagram": "PRIMROSE.COFFEE"
+    }
+  }
+}
