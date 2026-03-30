@@ -1,5 +1,5 @@
 
-let currentLang = 'en';
+const currentLang = 'zh'; // Optimized for Chinese-only powerful redesign
 let contentData = null;
 
 async function init() {
@@ -7,15 +7,10 @@ async function init() {
         const response = await fetch('content.json');
         contentData = await response.json();
         render();
-        setupIntersectionObserver();
+        setupScrollInteractions();
     } catch (err) {
         console.error('Failed to load content:', err);
     }
-}
-
-function toggleLanguage() {
-    currentLang = currentLang === 'en' ? 'zh' : 'en';
-    render();
 }
 
 function render() {
@@ -30,49 +25,68 @@ function render() {
         
         if (pageData && overlay) {
             let html = '<div class="overlay-card">';
+            
+            // Title & Slogan
             if (pageData.title) html += `<h2>${pageData.title}</h2>`;
-            if (pageData.slogan) html += `<p style="font-weight:700; color:var(--primary-color);">${pageData.slogan}</p>`;
-            if (pageData.since) html += `<p>${pageData.since}</p>`;
-            if (pageData.text) html += `<p>${pageData.text}</p>`;
-            if (pageData.subtitle) html += `<h3 style="color:var(--primary-color); margin-top:1rem;">${pageData.subtitle}</h3>`;
+            if (pageData.slogan) html += `<p style="font-weight:700; color:var(--primary-color); font-size:1.3rem;">${pageData.slogan}</p>`;
+            
+            // Main Text
+            if (pageData.text) html += `<p style="text-align: justify; margin-top: 1rem;">${pageData.text}</p>`;
+            
+            // Secondary Content
+            if (pageData.subtitle) html += `<h3>${pageData.subtitle}</h3>`;
             if (pageData.subtext) html += `<p>${pageData.subtext}</p>`;
+            
+            // Brands Grid
             if (pageData.brands) {
-                html += `<div class="brand-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1rem;">${pageData.brands.map(b => `<div class="brand-item" style="font-size:0.8rem; border:1px solid var(--glass-border); padding:0.3rem; border-radius:8px;">${b}</div>`).join('')}</div>`;
+                html += `<div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: 1.5rem;">${pageData.brands.map(b => `<div style="font-size:0.9rem; border:1px solid var(--glass-border); padding:0.5rem; border-radius:12px; background: rgba(255,255,255,0.05); font-weight:500;">${b}</div>`).join('')}</div>`;
             }
+            
+            // Products List
             if (pageData.products) {
-                html += `<div class="product-list" style="margin-top: 1rem; text-align: left; font-size: 0.9rem;">${pageData.products.map(p => `<div class="product-item">☕ ${p}</div>`).join('')}</div>`;
+                html += `<div style="margin-top: 1.5rem; text-align: left; font-size: 1rem; border-left: 2px solid var(--primary-color); padding-left: 1rem;">${pageData.products.map(p => `<div>☕ ${p}</div>`).join('')}</div>`;
             }
+            
+            // Methods
             if (pageData.methods) {
                 html += pageData.methods.map(m => `
-                    <div style="margin-top: 1rem; text-align: left;">
-                        <h4 style="color:var(--primary-color); border-bottom: 1px solid var(--glass-border); display: inline-block;">${m.name}</h4>
-                        <p style="font-size: 0.85rem; opacity: 0.8; margin-top: 0.2rem;">${m.items.join(' • ')}</p>
+                    <div style="margin-top: 1.2rem; text-align: left;">
+                        <h4 style="color:var(--primary-color); font-size:1.1rem; margin-bottom:0.3rem;">${m.name}</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">${m.items.join(' • ')}</p>
                     </div>
                 `).join('');
             }
+            
+            // Contacts Section
             if (pageData.contacts) {
+                html += `<div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);">`;
                 html += pageData.contacts.map(c => `
-                    <div style="margin-bottom: 1rem;">
-                        <h4 style="color:var(--primary-color);">${c.name}</h4>
-                        <p style="margin-bottom:0; font-size:0.85rem; font-weight:bold;">${c.title} ${c.subtitle || ''}</p>
-                        <p style="margin-bottom:0; font-size:0.85rem;">📞 ${c.tel}</p>
-                        <p style="margin-bottom:0; font-size:0.85rem;">✉️ ${c.email}</p>
+                    <div style="margin-bottom: 1.2rem; text-align: center;">
+                        <h4 style="color:var(--primary-color); font-size: 1.2rem;">${c.name}</h4>
+                        <p style="margin-bottom:0; font-size:0.9rem; font-weight:600;">${c.title} ${c.subtitle || ''}</p>
+                        <p style="margin-bottom:0; font-size:1rem; letter-spacing:1px;">${c.tel}</p>
+                        <p style="margin-bottom:0; font-size:0.9rem; opacity:0.8;">${c.email}</p>
                     </div>
                 `).join('');
-                html += `<div style="margin-top: 0.5rem; border-top: 1px solid var(--glass-border); padding-top: 0.5rem; font-size: 0.75rem; opacity: 0.8;">
+                html += `<div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">
                     <p>📍 ${pageData.address}</p>
-                    <p style="font-weight:700; color:var(--primary-color);">${pageData.website}</p>
-                </div>`;
+                    <p style="font-weight:700; color:var(--primary-color); font-size:1rem;">${pageData.website}</p>
+                </div></div>`;
             }
+            
             html += '</div>';
             overlay.innerHTML = html;
         }
     }
 }
 
-function setupIntersectionObserver() {
+function setupScrollInteractions() {
+    const progressBar = document.getElementById('scroll-progress-bar');
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    
+    // Intersection Observer for Section Entrance
     const observerOptions = {
-        threshold: 0.3
+        threshold: 0.25
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -80,17 +94,31 @@ function setupIntersectionObserver() {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = "1";
                 entry.target.style.transform = "translateY(0)";
-            } else {
-                entry.target.style.opacity = "0";
-                entry.target.style.transform = "translateY(20px)";
             }
         });
     }, observerOptions);
 
     document.querySelectorAll('.content-overlay').forEach(overlay => {
-        overlay.style.transition = "all 0.8s ease-out";
-        overlay.style.transform = "translateY(20px)";
         observer.observe(overlay);
+    });
+
+    // Scroll Depth & Indicator Logic
+    window.addEventListener('scroll', () => {
+        const windowScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (windowScroll / height) * 100;
+        
+        if (progressBar) progressBar.style.width = scrolled + "%";
+        
+        // Hide scroll indicator after slight scroll
+        if (scrollIndicator) {
+            if (windowScroll > 100) {
+                scrollIndicator.style.opacity = "0";
+                scrollIndicator.style.pointerEvents = "none";
+            } else {
+                scrollIndicator.style.opacity = "0.7";
+            }
+        }
     });
 }
 
