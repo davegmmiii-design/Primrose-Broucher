@@ -1,23 +1,50 @@
 
-const currentLang = 'zh'; // Optimized for Chinese-only powerful redesign
+let currentLang = 'en';
 let contentData = null;
 
 async function init() {
+    // Initial State Class
+    document.body.classList.add('lang-en');
+    
     try {
         const response = await fetch('content.json');
         contentData = await response.json();
         render();
-        setupScrollInteractions();
+        setupIntersectionObserver();
     } catch (err) {
         console.error('Failed to load content:', err);
     }
 }
 
+function toggleLanguage() {
+    // Toggle Logic
+    if (currentLang === 'en') {
+        currentLang = 'zh';
+        document.body.classList.remove('lang-en');
+        document.body.classList.add('lang-zh');
+    } else {
+        currentLang = 'en';
+        document.body.classList.remove('lang-zh');
+        document.body.classList.add('lang-en');
+    }
+    
+    render();
+}
+
 function render() {
     if (!contentData) return;
-    const lang = contentData[currentLang];
     
-    // Inject content into overlays
+    // IF ENGLISH: Clear all overlays (No glass cards, no text)
+    if (currentLang === 'en') {
+        for (let i = 1; i <= 12; i++) {
+            const overlay = document.getElementById(`content-${i}`);
+            if (overlay) overlay.innerHTML = '';
+        }
+        return;
+    }
+
+    // IF CHINESE: Inject floating translations
+    const lang = contentData[currentLang];
     for (let i = 1; i <= 12; i++) {
         const overlay = document.getElementById(`content-${i}`);
         const pageKey = `page${i}`;
@@ -25,100 +52,76 @@ function render() {
         
         if (pageData && overlay) {
             let html = '<div class="overlay-card">';
-            
-            // Title & Slogan
             if (pageData.title) html += `<h2>${pageData.title}</h2>`;
-            if (pageData.slogan) html += `<p style="font-weight:700; color:var(--primary-color); font-size:1.3rem;">${pageData.slogan}</p>`;
-            
-            // Main Text
-            if (pageData.text) html += `<p style="text-align: justify; margin-top: 1rem;">${pageData.text}</p>`;
-            
-            // Secondary Content
-            if (pageData.subtitle) html += `<h3>${pageData.subtitle}</h3>`;
+            if (pageData.slogan) html += `<p style="font-weight:700; color:var(--primary-color);">${pageData.slogan}</p>`;
+            if (pageData.since) html += `<p>${pageData.since}</p>`;
+            if (pageData.text) html += `<p>${pageData.text}</p>`;
+            if (pageData.subtitle) html += `<h3 style="color:var(--primary-color); margin-top:1rem;">${pageData.subtitle}</h3>`;
             if (pageData.subtext) html += `<p>${pageData.subtext}</p>`;
-            
-            // Brands Grid
             if (pageData.brands) {
-                html += `<div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: 1.5rem;">${pageData.brands.map(b => `<div style="font-size:0.9rem; border:1px solid var(--glass-border); padding:0.5rem; border-radius:12px; background: rgba(255,255,255,0.05); font-weight:500;">${b}</div>`).join('')}</div>`;
+                html += `<div class="brand-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1rem;">${pageData.brands.map(b => `<div class="brand-item" style="font-size:0.8rem; border:1px solid var(--glass-border); padding:0.3rem; border-radius:8px; background: rgba(0,0,0,0.2);">${b}</div>`).join('')}</div>`;
             }
-            
-            // Products List
             if (pageData.products) {
-                html += `<div style="margin-top: 1.5rem; text-align: left; font-size: 1rem; border-left: 2px solid var(--primary-color); padding-left: 1rem;">${pageData.products.map(p => `<div>☕ ${p}</div>`).join('')}</div>`;
+                html += `<div class="product-list" style="margin-top: 1.5rem; text-align: left; font-size: 0.95rem;">${pageData.products.map(p => `<div class="product-item">☕ ${p}</div>`).join('')}</div>`;
             }
-            
-            // Methods
             if (pageData.methods) {
                 html += pageData.methods.map(m => `
                     <div style="margin-top: 1.2rem; text-align: left;">
-                        <h4 style="color:var(--primary-color); font-size:1.1rem; margin-bottom:0.3rem;">${m.name}</h4>
-                        <p style="font-size: 0.9rem; opacity: 0.8;">${m.items.join(' • ')}</p>
+                        <h4 style="color:var(--primary-color); border-bottom: 2px solid var(--primary-color); display: inline-block;">${m.name}</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.85; margin-top: 0.4rem;">${m.items.join(' • ')}</p>
                     </div>
                 `).join('');
             }
-            
-            // Contacts Section
             if (pageData.contacts) {
-                html += `<div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--glass-border);">`;
                 html += pageData.contacts.map(c => `
-                    <div style="margin-bottom: 1.2rem; text-align: center;">
-                        <h4 style="color:var(--primary-color); font-size: 1.2rem;">${c.name}</h4>
-                        <p style="margin-bottom:0; font-size:0.9rem; font-weight:600;">${c.title} ${c.subtitle || ''}</p>
-                        <p style="margin-bottom:0; font-size:1rem; letter-spacing:1px;">${c.tel}</p>
-                        <p style="margin-bottom:0; font-size:0.9rem; opacity:0.8;">${c.email}</p>
+                    <div style="margin-bottom: 1.2rem;">
+                        <h4 style="color:var(--primary-color);">${c.name}</h4>
+                        <p style="margin-bottom:0; font-size:0.9rem; font-weight:700;">${c.title} ${c.subtitle || ''}</p>
+                        <p style="margin-bottom:0; font-size:0.9rem;">📞 ${c.tel}</p>
+                        <p style="margin-bottom:0; font-size:0.9rem;">✉️ ${c.email}</p>
                     </div>
                 `).join('');
-                html += `<div style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.7;">
+                html += `<div style="margin-top: 1rem; border-top: 1px solid var(--glass-border); padding-top: 0.8rem; font-size: 0.8rem; opacity: 0.9;">
                     <p>📍 ${pageData.address}</p>
-                    <p style="font-weight:700; color:var(--primary-color); font-size:1rem;">${pageData.website}</p>
-                </div></div>`;
+                    <p style="font-weight:800; color:var(--primary-color); font-size: 1rem; margin-top: 0.3rem;">${pageData.website}</p>
+                </div>`;
             }
-            
             html += '</div>';
             overlay.innerHTML = html;
         }
     }
 }
 
-function setupScrollInteractions() {
-    const progressBar = document.getElementById('scroll-progress-bar');
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    
-    // Intersection Observer for Section Entrance
+function setupIntersectionObserver() {
     const observerOptions = {
-        threshold: 0.25
+        threshold: 0.2, // Trigger earlier for smooth cinematic feel
+        rootMargin: "0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
+            if (currentLang === 'en') {
+                 entry.target.style.opacity = "0";
+                 return;
+            }
+            
             if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
+                // Staggered appearance
+                setTimeout(() => {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0) scale(1)";
+                }, 100);
+            } else {
+                entry.target.style.opacity = "0";
+                entry.target.style.transform = "translateY(30px) scale(0.95)";
             }
         });
     }, observerOptions);
 
     document.querySelectorAll('.content-overlay').forEach(overlay => {
+        overlay.style.transition = "all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1)";
+        overlay.style.transform = "translateY(30px) scale(0.95)";
         observer.observe(overlay);
-    });
-
-    // Scroll Depth & Indicator Logic
-    window.addEventListener('scroll', () => {
-        const windowScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (windowScroll / height) * 100;
-        
-        if (progressBar) progressBar.style.width = scrolled + "%";
-        
-        // Hide scroll indicator after slight scroll
-        if (scrollIndicator) {
-            if (windowScroll > 100) {
-                scrollIndicator.style.opacity = "0";
-                scrollIndicator.style.pointerEvents = "none";
-            } else {
-                scrollIndicator.style.opacity = "0.7";
-            }
-        }
     });
 }
 
