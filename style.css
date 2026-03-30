@@ -1,11 +1,11 @@
 
 :root {
-    --primary-color: #FF9F1C;
+    --primary-color: #FF9F1C; /* Brand Orange */
     --secondary-color: #004D40;
-    --bg-color: #000000;
-    --text-color: #ffffff;
-    --glass-bg: rgba(0, 0, 0, 0.3); /* Ultra transparent for Chinese mode */
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --bg-color: #fdfdfd; /* Bright Background */
+    --text-color: #1a1a1a; /* Dark Text for Readability */
+    --glass-bg: rgba(255, 255, 255, 0.45); /* Light glass effect */
+    --glass-border: rgba(0, 0, 0, 0.08);
     --font-family: 'Inter', sans-serif;
 }
 
@@ -23,9 +23,9 @@ body {
     overflow-y: scroll;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Minimal & Branded */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-track { background: #eee; }
 ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
 
 header {
@@ -36,18 +36,17 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(0, 0, 0, 0.7);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    background: var(--primary-color); /* Brand Orange Header */
+    color: white;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     z-index: 1000;
-    border-bottom: 1px solid var(--glass-border);
 }
 
-.logo { font-weight: 800; font-size: 1.2rem; color: var(--primary-color); letter-spacing: 1.5px; }
+.logo { font-weight: 800; font-size: 1.25rem; color: #fff; letter-spacing: 2px; }
 
 .lang-toggle {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     color: white;
     padding: 0.6rem 1.4rem;
     border-radius: 40px;
@@ -61,10 +60,10 @@ header {
 }
 .lang-toggle:hover {
     background: #ffffff;
-    color: #000000;
+    color: var(--primary-color);
     border-color: #ffffff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
 }
 
 /* Parallax Sections */
@@ -84,11 +83,10 @@ header {
     z-index: 1;
 }
 
-/* Ken Burns Effect (Slow Motion Zoom) */
+/* Ken Burns Effect (Refined for Bright Theme) */
 @keyframes kenBurns {
     0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    100% { transform: scale(1.04); }
 }
 
 .parallax-section::before {
@@ -100,11 +98,10 @@ header {
     background-position: inherit;
     background-attachment: inherit;
     background-repeat: inherit;
-    animation: kenBurns 20s infinite alternate cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation: kenBurns 15s infinite alternate ease-in-out;
     z-index: -1;
 }
 
-/* Mobile Optimization: Disable fixed attachment and limit animations */
 @media (max-width: 1024px) {
     .parallax-section, .parallax-section::before { 
         background-attachment: scroll; 
@@ -120,36 +117,31 @@ header {
     justify-content: center;
     padding: 2rem;
     opacity: 0;
-    transition: opacity 1.2s ease, transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: opacity 1s ease, transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
     z-index: 10;
 }
 
-/* Visibility Control based on Language */
-body.lang-en .content-overlay {
-    display: none !important; /* Completely hide English text/glass */
-}
-
-body.lang-zh .content-overlay {
-    display: flex;
-}
+/* Language Display Control */
+body.lang-en .content-overlay { display: none !important; }
+body.lang-zh .content-overlay { display: flex; }
 
 .overlay-card {
     max-width: 90%;
     width: 480px;
     padding: 3rem 2.5rem;
     background: var(--glass-bg);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(25px) saturate(200%);
+    backdrop-filter: blur(25px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 32px;
     text-align: center;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08); /* Softer shadow for bright theme */
 }
 
-h2 { color: var(--primary-color); margin-bottom: 1rem; font-weight: 800; font-size: 2.2rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
-p { font-size: 1.15rem; opacity: 0.98; margin-bottom: 0.6rem; text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+h2 { color: var(--primary-color); margin-bottom: 1rem; font-weight: 800; font-size: 2.2rem; }
+p { font-size: 1.15rem; color: #333; margin-bottom: 0.6rem; font-weight: 500; }
 
-/* Social Icons */
+/* Social Icons - Brand Colors */
 .social-bar {
     position: fixed;
     bottom: 2.5rem;
@@ -157,27 +149,47 @@ p { font-size: 1.15rem; opacity: 0.98; margin-bottom: 0.6rem; text-shadow: 0 1px
     transform: translateX(-50%);
     display: flex;
     gap: 2.5rem;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(255, 255, 255, 0.9);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     padding: 1rem 2.5rem;
     border-radius: 60px;
     border: 1px solid var(--glass-border);
     z-index: 1000;
-    box-shadow: 0 15px 50px rgba(0,0,0,0.9);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
 
 .social-link { 
-    color: white; 
     text-decoration: none; 
     font-size: 2.2rem;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .social-link:hover {
-    transform: scale(1.3) translateY(-8px);
+    transform: scale(1.3) translateY(-10px);
 }
 
-.social-link[title="WhatsApp"]:hover { color: #25D366; }
-.social-link[title="Instagram"]:hover { color: #E4405F; }
-.social-link[title="WeChat"]:hover { color: #07C160; }
+/* Official Logo Colors */
+.social-link[title="WhatsApp"] { color: #25D366; }
+.social-link[title="WeChat"] { color: #07C160; }
+
+/* Real Instagram Gradient Mimic */
+.social-link[title="Instagram"] i {
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+/* WeChat Modal */
+#wechat-modal h2 { color: var(--primary-color); margin-bottom: 1rem; }
+#wechat-modal button { 
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    text-transform: uppercase;
+}
