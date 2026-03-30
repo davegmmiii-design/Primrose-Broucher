@@ -1,0 +1,11 @@
+
+node_modules/
+*.pdf
+.gemini/
+*.ps1
+check_pdf_conv.js
+convert_first_pages.js
+extract_all_text.js
+extract_text.js
+extracted_content.json
+content_1*.txt
