@@ -12,7 +12,7 @@
     <!-- Font Awesome for Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body>
+<body class="lang-en">
     <header>
         <div class="logo">PRIMROSE</div>
         <button class="lang-toggle" onclick="toggleLanguage()">中文 / EN</button>
@@ -81,10 +81,14 @@
         </a>
     </div>
 
-    <div id="wechat-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:200; align-items:center; justify-content:center; flex-direction:column; padding: 2rem;">
+    <div id="wechat-modal">
         <h2>WeChat ID</h2>
-        <p style="font-size: 1.5rem; font-weight: bold;">wxid_908d546yxmnh22</p>
-        <button onclick="closeWeChat()" style="margin-top: 2rem; background: var(--primary-color);">Close</button>
+        <div class="wechat-id-container">
+            <span id="wechat-id-text" style="font-size: 1.3rem; font-weight: bold; letter-spacing: 1px;">wxid_908d546yxmnh22</span>
+            <i class="fa-regular fa-copy copy-btn" id="copy-icon" onclick="copyWeChat()" title="Copy ID"></i>
+        </div>
+        <p id="copy-status" style="font-size: 0.8rem; color: var(--primary-color); height: 1.2rem; margin-bottom: 1rem; opacity: 0;"></p>
+        <button onclick="closeWeChat()">Close</button>
     </div>
 
     <script src="script.js"></script>

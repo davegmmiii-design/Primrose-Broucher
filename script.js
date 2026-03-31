@@ -59,7 +59,7 @@ function render() {
             if (pageData.subtitle) html += `<h3 style="color:var(--primary-color); margin-top:1rem;">${pageData.subtitle}</h3>`;
             if (pageData.subtext) html += `<p>${pageData.subtext}</p>`;
             if (pageData.brands) {
-                html += `<div class="brand-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin-top: 1rem;">${pageData.brands.map(b => `<div class="brand-item" style="font-size:0.8rem; border:1px solid var(--glass-border); padding:0.3rem; border-radius:8px; background: rgba(0,0,0,0.2);">${b}</div>`).join('')}</div>`;
+                html += `<div class="brand-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; margin-top: 1rem;">${pageData.brands.map(b => `<div class="brand-item" style="font-size:0.8rem; border:1px solid rgba(255,255,255,0.1); padding:0.3rem; border-radius:8px; background: rgba(255,255,255,0.05);">${b}</div>`).join('')}</div>`;
             }
             if (pageData.products) {
                 html += `<div class="product-list" style="margin-top: 1.5rem; text-align: left; font-size: 0.95rem;">${pageData.products.map(p => `<div class="product-item">☕ ${p}</div>`).join('')}</div>`;
@@ -81,7 +81,7 @@ function render() {
                         <p style="margin-bottom:0; font-size:0.9rem;">✉️ ${c.email}</p>
                     </div>
                 `).join('');
-                html += `<div style="margin-top: 1rem; border-top: 1px solid var(--glass-border); padding-top: 0.8rem; font-size: 0.8rem; opacity: 0.9;">
+                html += `<div style="margin-top: 1rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.8rem; font-size: 0.8rem; opacity: 0.9;">
                     <p>📍 ${pageData.address}</p>
                     <p style="font-weight:800; color:var(--primary-color); font-size: 1rem; margin-top: 0.3rem;">${pageData.website}</p>
                 </div>`;
@@ -94,19 +94,18 @@ function render() {
 
 function setupIntersectionObserver() {
     const observerOptions = {
-        threshold: 0.2, // Trigger earlier for smooth cinematic feel
+        threshold: 0.2,
         rootMargin: "0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (currentLang === 'en') {
                  entry.target.style.opacity = "0";
                  return;
             }
             
             if (entry.isIntersecting) {
-                // Staggered appearance
                 setTimeout(() => {
                     entry.target.style.opacity = "1";
                     entry.target.style.transform = "translateY(0) scale(1)";
@@ -125,7 +124,41 @@ function setupIntersectionObserver() {
     });
 }
 
-function showWeChat() { document.getElementById('wechat-modal').style.display = 'flex'; }
-function closeWeChat() { document.getElementById('wechat-modal').style.display = 'none'; }
+// WECHAT MODAL FUNCTIONS
+function showWeChat() { 
+    document.getElementById('wechat-modal').style.display = 'flex'; 
+}
+
+function closeWeChat() { 
+    document.getElementById('wechat-modal').style.display = 'none'; 
+    document.getElementById('copy-status').style.opacity = "0";
+}
+
+async function copyWeChat() {
+    const wechatId = document.getElementById('wechat-id-text').innerText;
+    const status = document.getElementById('copy-status');
+    const icon = document.getElementById('copy-icon');
+
+    try {
+        await navigator.clipboard.writeText(wechatId);
+        
+        // Success Feedback
+        status.innerText = "ID Copied to Clipboard!";
+        status.style.opacity = "1";
+        icon.classList.remove('fa-regular', 'fa-copy');
+        icon.classList.add('fa-solid', 'fa-check');
+        
+        setTimeout(() => {
+            status.style.opacity = "0";
+            icon.classList.remove('fa-solid', 'fa-check');
+            icon.classList.add('fa-regular', 'fa-copy');
+        }, 2000);
+        
+    } catch (err) {
+        console.error('Failed to copy text: ', err);
+        status.innerText = "Please copy manually";
+        status.style.opacity = "1";
+    }
+}
 
 init();
