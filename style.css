@@ -110,13 +110,19 @@ header {
         /* Square Section Height for Square Images (1563x1563) */
         height: 100vw; 
         min-height: 100vw;
+        margin-bottom: 2rem; /* SMALL GAP BETWEEN PAGES */
+        scroll-snap-align: center; /* Center snap feels better with margins */
     }
     
     .overlay-card {
-        padding: 2rem 1.5rem !important; /* Slightly more compact for square sections */
+        padding: 1.5rem 1.2rem !important; /* COMPACT PADDING */
         max-width: 85% !important;
-        transform: scale(0.9); /* Downscale to fit square better */
+        max-height: 85% !important; /* PREVENT OVERFLOWING NEXT PAGE */
+        overflow-y: auto !important; /* INTERNAL SCROLL FOR LONG TEXT */
     }
+    
+    .overlay-card h2 { font-size: 1.6rem !important; } /* SCALED FONT SIZES */
+    .overlay-card p { font-size: 1rem !important; }
 }
 
 .content-overlay {
@@ -152,7 +158,14 @@ body.lang-zh .overlay-card {
     background: var(--glass-bg);
     border-radius: 32px;
     text-align: center;
+    
+    /* Custom inner scrollbar for dark card */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) rgba(0,0,0,0.1);
 }
+
+.overlay-card::-webkit-scrollbar { width: 4px; }
+.overlay-card::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
 
 body.lang-zh .overlay-card p { color: rgba(255, 255, 255, 0.9); }
 body.lang-zh .overlay-card h2 { color: var(--primary-color); }
