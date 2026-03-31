@@ -73,7 +73,7 @@ header {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain; /* ESSENTIAL: Keeps full brochure page visible */
+    background-size: contain; 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,12 +101,21 @@ header {
     z-index: -1;
 }
 
+/* MOBILE FIX: Removing big white gaps by matching section height to square images */
 @media (max-width: 1024px) {
     .parallax-section, .parallax-section::before { 
         background-attachment: scroll; 
-        background-size: contain; /* Changed from 'cover' to 'contain' to fix mobile area issue */
-        background-position: center top; /* Align to top for better reading flow on mobile */
-        height: 100vh; /* Keep full viewport height */
+        background-size: contain; 
+        background-position: center;
+        /* Square Section Height for Square Images (1563x1563) */
+        height: 100vw; 
+        min-height: 100vw;
+    }
+    
+    .overlay-card {
+        padding: 2rem 1.5rem !important; /* Slightly more compact for square sections */
+        max-width: 85% !important;
+        transform: scale(0.9); /* Downscale to fit square better */
     }
 }
 
