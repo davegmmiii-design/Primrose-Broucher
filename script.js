@@ -38,7 +38,10 @@ function render() {
     if (currentLang === 'en') {
         for (let i = 1; i <= 12; i++) {
             const overlay = document.getElementById(`content-${i}`);
-            if (overlay) overlay.innerHTML = '';
+            if (overlay) {
+                overlay.innerHTML = '';
+                overlay.style.opacity = "0";
+            }
         }
         return;
     }
@@ -88,13 +91,20 @@ function render() {
             }
             html += '</div>';
             overlay.innerHTML = html;
+            
+            // FIX: If section is in viewport when rendering, show it immediately
+            const rect = overlay.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                overlay.style.opacity = "1";
+                overlay.style.transform = "translateY(0) scale(1)";
+            }
         }
     }
 }
 
 function setupIntersectionObserver() {
     const observerOptions = {
-        threshold: 0.2,
+        threshold: 0.1, // REDUCED THRESHOLD FOR MOBILE RELIABILITY
         rootMargin: "0px"
     };
 
@@ -118,7 +128,7 @@ function setupIntersectionObserver() {
     }, observerOptions);
 
     document.querySelectorAll('.content-overlay').forEach(overlay => {
-        overlay.style.transition = "all 1.2s cubic-bezier(0.165, 0.84, 0.44, 1)";
+        overlay.style.transition = "all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1)";
         overlay.style.transform = "translateY(30px) scale(0.95)";
         observer.observe(overlay);
     });
